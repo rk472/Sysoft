@@ -88,6 +88,8 @@ public class HomeFragment extends Fragment {
             @Override
             protected void populateViewHolder(BatchViewHolder viewHolder, Batch model, int position) {
                 viewHolder.setAllData(model.getBatch_name(),model.getBatch_start(),model.getBatch_timing());
+                viewHolder.setNew(model.isN());
+                viewHolder.setPic(getActivity(),model.getImage());
             }
         };
 
@@ -124,17 +126,29 @@ public class HomeFragment extends Fragment {
         }
     }
     public static class BatchViewHolder extends RecyclerView.ViewHolder{
-        TextView batchName,batchStart,batchTiming;
+        TextView batchName,batchStart,batchTiming,newText;
+        ImageView img;
         public BatchViewHolder(View itemView) {
             super(itemView);
             batchName=itemView.findViewById(R.id.batch_row_name);
             batchStart=itemView.findViewById(R.id.batch_row_start);
             batchTiming=itemView.findViewById(R.id.batch_row_timing);
+            newText=itemView.findViewById(R.id.batch_row_new);
+            img=itemView.findViewById(R.id.batch_row_pic);
         }
         void setAllData(String name,String start,String timing){
             batchName.setText(name);
             batchTiming.setText(timing);
             batchStart.setText("starts from : "+start);
+        }
+        void setNew(boolean b){
+            if(b)
+                newText.setVisibility(View.VISIBLE);
+            else
+                newText.setVisibility(View.INVISIBLE);
+        }
+        void setPic(Context c,String url){
+            Picasso.with(c).load(url).into(img);
         }
     }
 
