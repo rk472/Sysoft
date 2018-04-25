@@ -34,6 +34,7 @@ public class HomeFragment extends Fragment {
     private TextView homeNewsTitle,homeNewsDesc;
     private DatabaseReference newsRef;
     private RecyclerView newsList,batchList;
+    private ValueEventListener v;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -47,7 +48,7 @@ public class HomeFragment extends Fragment {
         homeNewsTitle=root.findViewById(R.id.home_news_title);
         homeNewsDesc=root.findViewById(R.id.home_news_desc);
         newsRef= FirebaseDatabase.getInstance().getReference().child("news");
-        newsRef.addValueEventListener(new ValueEventListener() {
+        v=new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String title=dataSnapshot.child("main_news").getValue().toString();
@@ -57,12 +58,12 @@ public class HomeFragment extends Fragment {
                 homeNewsTitle.setText(title);
                 Picasso.with(getActivity()).load(imgUrl).into(homeNewsPic);
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
             }
-        });
+        };
+        newsRef.addValueEventListener(v);
         newsList=root.findViewById(R.id.news_list);
         batchList=root.findViewById(R.id.batch_list);
 
@@ -152,4 +153,9 @@ public class HomeFragment extends Fragment {
         }
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        newsRef.removeEventListener(v);
+    }
 }
