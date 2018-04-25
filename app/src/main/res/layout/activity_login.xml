@@ -19,13 +19,13 @@
             android:background="@drawable/stroke_shape"
             android:src="@drawable/logo"/>
         <EditText
+            android:hint="UserName"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:paddingLeft="15dp"
             android:paddingRight="15dp"
             android:layout_margin="20dp"
             android:background="@drawable/stroke_shape"
-            android:hint="UserName"
             android:textColor="#ffffff"
             android:textColorHint="#bfc1c1"/>
         <EditText

@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -54,7 +55,7 @@ public class CoursesFragment extends Fragment {
                 viewHolder.setName(model.getName());
             }
         };
-        courseList.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL,false));
+        courseList.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL,false));
         courseList.setHasFixedSize(true);
         courseList.setAdapter(f);
 
@@ -62,7 +63,7 @@ public class CoursesFragment extends Fragment {
         return root;
     }
     public static class CourseViewHolder extends RecyclerView.ViewHolder{
-        CircleImageView dp;
+        ImageView dp;
         TextView name,duration,fee;
         Button syllabus;
         public CourseViewHolder(View itemView) {
