@@ -108,7 +108,7 @@ public class HomeFragment extends Fragment {
 
     public static class NewsViewHolder extends RecyclerView.ViewHolder{
         TextView newsTitle,newsDesc;
-        CircleImageView newsPic;
+        ImageView newsPic;
         public NewsViewHolder(View itemView) {
             super(itemView);
             newsTitle=itemView.findViewById(R.id.news_row_title);
@@ -139,7 +139,7 @@ public class HomeFragment extends Fragment {
         void setAllData(String name,String start,String timing){
             batchName.setText(name);
             batchTiming.setText(timing);
-            batchStart.setText("starts from : "+start);
+            batchStart.setText(start);
         }
         void setNew(boolean b){
             if(b)

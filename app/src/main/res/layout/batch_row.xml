@@ -1,40 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="250dp"
-    android:layout_height="220dp" android:orientation="vertical"
-    android:gravity="center"
-    android:layout_marginRight="5dp"
-    android:background="@color/colorPrimary">
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="360dp"
+    android:layout_height="200dp"
+    android:orientation="vertical"
+    android:gravity="center">
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="25dp"
         android:id="@+id/batch_row_new"
+        android:text=" NEW ! "
+        android:textSize="18dp"
+        android:background="@color/colorAccent"
+        android:elevation="8dp"
         android:textColor="#ffffff"
-        android:text="new"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="2dp"
         android:visibility="invisible"/>
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:id="@+id/batch_row_pic"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="25dp"
-        android:text="Title"
-        android:textColor="#ffffff"
-        android:id="@+id/batch_row_name"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="18dp"
-        android:text="Starts from"
-        android:textColor="#ffffff"
-        android:id="@+id/batch_row_start"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="18dp"
-        android:text="timing"
-        android:textColor="#ffffff"
-        android:id="@+id/batch_row_timing"/>
-</LinearLayout>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="350dp"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="5dp">
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="20">
+
+            <ImageView
+                android:id="@+id/batch_row_pic"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="7"
+                android:scaleType="centerCrop"
+                android:src="@drawable/back35" />
+
+            <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="13"
+                android:padding="10dp">
+
+                <TextView
+                    android:id="@+id/batch_row_enroll"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/arbutus_slab"
+                    android:text="Enroll Now . Admissions Open"
+                    android:textColor="#137067"
+                    android:textSize="12dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/batch_row_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/batch_row_enroll"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/arbutus_slab"
+                    android:text="Title"
+                    android:textAllCaps="true"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/batch_row_start"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:fontFamily="@font/arbutus_slab"
+                    android:text="Starts from"
+                    android:textAllCaps="true"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:id="@+id/batch_row_timing"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentEnd="true"
+                    android:fontFamily="@font/arbutus_slab"
+                    android:text="timing"
+                    android:textAllCaps="true"
+                    android:textSize="15dp" />
+            </RelativeLayout>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+</RelativeLayout>
