@@ -10,6 +10,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="about_desc">Sysoft technology as a premier technical institute in town, established in the year 2002 with handful of students. In course of time within two to three years a massive batch of students have undergone in different courses like oracle, .net, java, c, c++, hardware and networking and have been secured placement efficiently in companies like Infosys, TCS, TechMahindra, HCL, Oracle Finance, Accenture and many more. Our primary objective is empowerment through proper knowledge because young minds can be developed through proper education. The organization runs on the belief that we educate and help the students to acquire a technical expertise</string>
     <string-array name="spinner">
         <item >--choose subjects-- </item>
     </string-array>
