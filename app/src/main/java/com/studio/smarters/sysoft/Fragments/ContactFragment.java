@@ -9,11 +9,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.studio.smarters.sysoft.R;
 
 public class ContactFragment extends Fragment {
     private AppCompatActivity main;
     private View root;
+    private GoogleMap mMap;
+    private MapView map;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -27,4 +36,6 @@ public class ContactFragment extends Fragment {
         // Inflate the layout for this fragment
         return root;
     }
+
+
 }
