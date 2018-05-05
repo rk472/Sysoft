@@ -11,11 +11,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 import com.studio.smarters.sysoft.POJO.Faculty;
 import com.studio.smarters.sysoft.R;
@@ -29,6 +32,7 @@ public class FacultiesFragment extends Fragment {
     private View root;
     private RecyclerView facultyList;
     private DatabaseReference facultyRef;
+    private RelativeLayout progress;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -39,7 +43,9 @@ public class FacultiesFragment extends Fragment {
         NavigationView navigationView = (NavigationView) main.findViewById(R.id.nav_view);
         navigationView.setCheckedItem(R.id.nav_faculties);
         facultyList=root.findViewById(R.id.faculty_list);
+        progress=root.findViewById(R.id.faculty_progress);
         facultyRef= FirebaseDatabase.getInstance().getReference().child("faculty");
+        facultyRef.keepSynced(true);
         FirebaseRecyclerAdapter<Faculty,FacultyViewHolder> f=new FirebaseRecyclerAdapter<Faculty, FacultyViewHolder>(
                 Faculty.class,
                 R.layout.faculty_row,
@@ -48,6 +54,7 @@ public class FacultiesFragment extends Fragment {
         ) {
             @Override
             protected void populateViewHolder(FacultyViewHolder viewHolder, Faculty model, int position) {
+                progress.setVisibility(View.GONE);
                 viewHolder.setDesc(model.getDesc());
                 viewHolder.setDp(getActivity(),model.getImage());
                 viewHolder.setName(model.getName());
@@ -74,8 +81,19 @@ public class FacultiesFragment extends Fragment {
         void setDesc(String s){
             desc.setText(s);
         }
-        void setDp(Context c,String s){
-            Picasso.with(c).load(s).into(dp);
+        void setDp(final Context ctx, final String s){
+            Picasso.with(ctx).load(s).networkPolicy(NetworkPolicy.OFFLINE).placeholder(R.drawable.dp)
+                    .into(dp, new Callback() {
+                        @Override
+                        public void onSuccess() {
+
+                        }
+
+                        @Override
+                        public void onError() {
+                            Picasso.with(ctx).load(s).placeholder(R.drawable.dp).into(dp);
+                        }
+                    });
         }
     }
 

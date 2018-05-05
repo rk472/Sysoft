@@ -16,6 +16,6 @@
     <string name="para1">InstaMinds Technologies and outsourcing Pvt. Ltd is an innovative platform for the job aspirant students. We work in the direction of assessment to opportunity and providing solutions. InstaMinds believe in value creation and taking part in problem solving. We work towards creating values in the direction of campus to corporate, assessment to associate. Our core team is market competent and having problem solving personalities, who are the real heroes of our company and taking part to lead from root to fruit.</string>
     <string name="para2">Our INTERNSHIP is based on C2C [CAMPUS TO CORPORATE] model of Training Programs aims to build high level competency within individual to compete in the market. It would be a definite boost to their personal contribution and performance levels in the organization. This program is aimed to train candidates to the professional level for the job requirement of the organisation. Internship Programme is on Live E-commerce Portal.</string>
     <string-array name="spinner">
-        <item >--choose subjects-- </item>
+        <item>--choose subjects-- </item>
     </string-array>
 </resources>

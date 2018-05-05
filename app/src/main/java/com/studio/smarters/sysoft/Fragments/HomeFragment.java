@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -20,6 +21,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 import com.studio.smarters.sysoft.POJO.Batch;
 import com.studio.smarters.sysoft.POJO.News;
@@ -35,6 +38,7 @@ public class HomeFragment extends Fragment {
     private DatabaseReference newsRef;
     private RecyclerView newsList,batchList;
     private ValueEventListener v;
+    private RelativeLayout progress;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -47,16 +51,29 @@ public class HomeFragment extends Fragment {
         homeNewsPic=root.findViewById(R.id.home_news_pic);
         homeNewsTitle=root.findViewById(R.id.home_news_title);
         homeNewsDesc=root.findViewById(R.id.home_news_desc);
+        progress=root.findViewById(R.id.home_progress);
         newsRef= FirebaseDatabase.getInstance().getReference().child("news");
+        newsRef.keepSynced(true);
         v=new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String title=dataSnapshot.child("main_news").getValue().toString();
                 String desc=dataSnapshot.child("main_desc").getValue().toString();
-                String imgUrl=dataSnapshot.child("main_pic").getValue().toString();
+                final String imgUrl=dataSnapshot.child("main_pic").getValue().toString();
                 homeNewsDesc.setText(desc);
                 homeNewsTitle.setText(title);
-                Picasso.with(getActivity()).load(imgUrl).into(homeNewsPic);
+                Picasso.with(getActivity()).load(imgUrl).networkPolicy(NetworkPolicy.OFFLINE).placeholder(R.drawable.dp)
+                        .into(homeNewsPic, new Callback() {
+                            @Override
+                            public void onSuccess() {
+
+                            }
+
+                            @Override
+                            public void onError() {
+                                Picasso.with(getContext()).load(imgUrl).placeholder(R.drawable.dp).into(homeNewsPic);
+                            }
+                        });
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
@@ -78,8 +95,10 @@ public class HomeFragment extends Fragment {
                 viewHolder.setDesc(model.getNews_desc());
                 viewHolder.setTitle(model.getNews_title());
                 viewHolder.setPic(getActivity(),model.getNews_pic());
+                progress.setVisibility(View.GONE);
             }
         };
+        newsRef.child("upcoming_batches").keepSynced(true);
         FirebaseRecyclerAdapter<Batch,BatchViewHolder> f2=new FirebaseRecyclerAdapter<Batch, BatchViewHolder>(
                 Batch.class,
                 R.layout.batch_row,
@@ -148,8 +167,19 @@ public class HomeFragment extends Fragment {
             else
                 newText.setVisibility(View.INVISIBLE);
         }
-        void setPic(Context c,String url){
-            Picasso.with(c).load(url).into(img);
+        void setPic(final Context ctx, final String url){
+            Picasso.with(ctx).load(url).networkPolicy(NetworkPolicy.OFFLINE).placeholder(R.drawable.dp)
+                    .into(img, new Callback() {
+                        @Override
+                        public void onSuccess() {
+
+                        }
+
+                        @Override
+                        public void onError() {
+                            Picasso.with(ctx).load(url).placeholder(R.drawable.dp).into(img);
+                        }
+                    });
         }
     }
 

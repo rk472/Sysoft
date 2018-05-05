@@ -3,6 +3,7 @@
     package="com.studio.smarters.sysoft">
 
     <application
+        android:name=".SysoftOffline"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -22,8 +23,12 @@
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".LoginActivity"
-            android:theme="@style/NoBar"></activity>
+        <activity
+            android:name=".LoginActivity"
+            android:theme="@style/NoBar" />
+        <activity android:name=".ProfileActivity" />
+        <activity android:name=".SyllabusActivity"
+            android:parentActivityName=".MainActivity"></activity>
     </application>
 
 </manifest>

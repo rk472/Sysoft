@@ -5,6 +5,21 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragments.CoursesFragment">
+    <RelativeLayout
+        android:id="@+id/course_progress"
+        android:elevation="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff">
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:lottie_fileName="loader_4.json"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"/>
+
+
+    </RelativeLayout>
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"

@@ -13,10 +13,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 import com.studio.smarters.sysoft.POJO.Gallery;
 import com.studio.smarters.sysoft.R;
@@ -26,6 +29,7 @@ public class GalleryFragment extends Fragment {
     private View root;
     private RecyclerView galleryList;
     private DatabaseReference galleryRef;
+    private RelativeLayout progress;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -36,7 +40,9 @@ public class GalleryFragment extends Fragment {
         NavigationView navigationView =  main.findViewById(R.id.nav_view);
         navigationView.setCheckedItem(R.id.nav_gallery);
         galleryList=root.findViewById(R.id.gallery_list);
+        progress=root.findViewById(R.id.gallery_progress);
         galleryRef= FirebaseDatabase.getInstance().getReference().child("gallery");
+        galleryRef.keepSynced(true);
         FirebaseRecyclerAdapter<Gallery,GalleryViewHolder> f=new FirebaseRecyclerAdapter<Gallery, GalleryViewHolder>(
                 Gallery.class,
                 R.layout.gallery_row,
@@ -45,6 +51,7 @@ public class GalleryFragment extends Fragment {
         ) {
             @Override
             protected void populateViewHolder(GalleryViewHolder viewHolder, Gallery model, int position) {
+                progress.setVisibility(View.GONE);
                 viewHolder.setPic(getActivity(),model.getUrl());
             }
         };
@@ -60,8 +67,20 @@ public class GalleryFragment extends Fragment {
             super(itemView);
             img=itemView.findViewById(R.id.gallery_row_pic);
         }
-        void setPic(Context c, String s){
-            Picasso.with(c).load(s).into(img);
+        void setPic(final Context ctx, final String s){
+            Picasso.with(ctx).load(s).networkPolicy(NetworkPolicy.OFFLINE).placeholder(R.drawable.dp)
+                    .into(img, new Callback() {
+                        @Override
+                        public void onSuccess() {
+
+                        }
+
+                        @Override
+                        public void onError() {
+                            Picasso.with(ctx).load(s).placeholder(R.drawable.dp).into(img);
+                        }
+                    });
+
         }
     }
 }
