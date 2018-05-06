@@ -12,11 +12,16 @@
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            app:cardElevation="5dp">
+            android:layout_height="130dp"
+            app:cardElevation="10dp">
 
             <ImageView
                 android:layout_width="match_parent"
+                android:src="@drawable/logo"
+                android:paddingTop="15dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:scaleType="centerCrop"
                 android:layout_height="match_parent" />
         </android.support.v7.widget.CardView>
         <ScrollView
@@ -26,107 +31,150 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="25dp"
+                    android:fontFamily="@font/arbutus_slab"
+                    android:text="Worried About Your Future ?"
                     android:textAlignment="center"
-                    android:textColor="#000000"
-                    android:textSize="22dp"
-                    android:text="Worried About Your Future ?"/>
+                    android:textColor="#5d8fb9"
+                    android:textSize="21dp" />
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/arbutus_slab"
+                    android:text="Join Us Now !!!"
                     android:textAlignment="center"
-                    android:textColor="#000000"
-                    android:textSize="22dp"
-                    android:text="Join Us Now !!!"/>
+                    android:textColor="#5d8fb9"
+                    android:textSize="21dp" />
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/amita_bold"
+                    android:layout_margin="5dp"
+                    android:text="@string/wallk"
                     android:textAlignment="center"
-                    android:textSize="19dp"
-                    android:padding="5dp"
-                    android:textColor="#000000"
-                    android:text="@string/wallk"/>
+                    android:textColor="#d20228"
+                    android:textSize="19dp" />
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/arbutus_slab"
+                    android:text="We are Ready to help"
                     android:textAlignment="center"
-                    android:textColor="#000000"
-                    android:textSize="22dp"
-                    android:text="We are Ready to help"/>
+                    android:textColor="#5d8fb9"
+                    android:textSize="21dp" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/arbutus_slab"
+                    android:text="Sysoft Bhubaneswar Team"
+                    android:textAlignment="center"
+                    android:textColor="#5d8fb9"
+                    android:textSize="21dp" />
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_marginTop="20dp"
-                    android:weightSum="2"
+                    android:weightSum="8"
                     android:orientation="horizontal"
-                    android:layout_height="100dp">
+                    android:layout_marginTop="5dp"
+                    android:layout_height="90dp">
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="match_parent">
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:elevation="7dp">
 
                         <android.support.v7.widget.CardView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_margin="10dp"
                             android:clickable="true"
-                            app:cardElevation="5dp">
+                            app:cardCornerRadius="35dp"
+                            app:cardElevation="2dp">
 
                             <RelativeLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent">
+                                android:layout_height="match_parent"
+                                android:background="#3d599f"
+                                android:padding="10dp">
 
                                 <ImageView
-                                    android:layout_width="45dp"
-                                    android:layout_height="45dp"
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
                                     android:layout_centerHorizontal="true"
+                                    android:layout_centerVertical="true"
                                     android:src="@drawable/vect_call_us" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_alignParentBottom="true"
-                                    android:layout_centerHorizontal="true"
-                                    android:layout_margin="5dp"
-                                    android:text="Call Us"
-                                    android:textColor="#000000"
-                                    android:textSize="17dp" />
                             </RelativeLayout>
                         </android.support.v7.widget.CardView>
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:elevation="7dp">
 
                         <android.support.v7.widget.CardView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_margin="10dp"
                             android:clickable="true"
-                            app:cardElevation="5dp">
+                            app:cardCornerRadius="35dp"
+                            app:cardElevation="2dp">
 
                             <RelativeLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent">
+                                android:layout_height="match_parent"
+                                android:background="#3d599f"
+                                android:padding="1dp">
 
                                 <ImageView
-                                    android:layout_width="45dp"
-                                    android:layout_height="45dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
                                     android:layout_centerHorizontal="true"
-                                    android:src="@drawable/vect_find_us" />
+                                    android:layout_centerVertical="true"
+                                    android:src="@drawable/logo_fb" />
+                            </RelativeLayout>
+                        </android.support.v7.widget.CardView>
+                    </LinearLayout>
 
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_alignParentBottom="true"
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:elevation="7dp">
+
+                        <android.support.v7.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="10dp"
+                            android:clickable="true"
+                            app:cardCornerRadius="35dp"
+                            app:cardElevation="2dp">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="#3d599f"
+                                android:padding="5dp">
+
+                                <ImageView
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
                                     android:layout_centerHorizontal="true"
-                                    android:layout_margin="5dp"
-                                    android:text="Reach Us"
-                                    android:textColor="#000000"
-                                    android:textSize="17dp" />
+                                    android:layout_centerVertical="true"
+                                    android:src="@drawable/vect_find_us" />
                             </RelativeLayout>
                         </android.support.v7.widget.CardView>
                     </LinearLayout>

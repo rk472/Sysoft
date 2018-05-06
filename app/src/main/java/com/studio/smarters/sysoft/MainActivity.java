@@ -26,6 +26,7 @@ import com.studio.smarters.sysoft.Fragments.FacultiesFragment;
 import com.studio.smarters.sysoft.Fragments.GalleryFragment;
 import com.studio.smarters.sysoft.Fragments.HomeFragment;
 import com.studio.smarters.sysoft.Fragments.InternshipFragment;
+import com.studio.smarters.sysoft.Fragments.SuccessFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -128,6 +129,9 @@ public class MainActivity extends AppCompatActivity
             tag="other";
         } else if (id == R.id.nav_gallery) {
             f = new GalleryFragment();
+            tag="other";
+        }else if (id == R.id.nav_success) {
+            f = new SuccessFragment();
             tag="other";
         }
         fragmentTransaction = getSupportFragmentManager().beginTransaction();

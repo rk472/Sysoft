@@ -70,11 +70,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:fontFamily="@font/arbutus_slab"
-                    android:text="*.	Asp.net
-*.	Vc#.net
-*.	Html, Css, Jscript, Jquery
-*.	Web API, Json
-"
+                    android:text="*.	Asp.net\n*.	Vc#.net\n*.	Html, Css, Jscript, Jquery\n*.	Web API, Json\n\n"
                     android:textSize="18dp" />
             </LinearLayout>
         </ScrollView>

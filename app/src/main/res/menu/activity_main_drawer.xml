@@ -25,6 +25,10 @@
             android:id="@+id/nav_internship"
             android:icon="@drawable/vector_nav_project"
             android:title="Internships Offered" />
+        <item
+            android:id="@+id/nav_success"
+            android:icon="@drawable/vector_nav_success"
+            android:title="Our Success Achievers" />
     </group>
     <group android:checkableBehavior="single"
         android:id="@+id/gr2">

@@ -45,7 +45,7 @@
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="#ae33c0e7">
+                        android:background="#a633c0e7">
 
                     </RelativeLayout>
 
@@ -75,6 +75,7 @@
                             android:layout_height="wrap_content"
                             android:padding="2dp"
                             android:text=" "
+                            android:textAlignment="center"
                             android:fontFamily="@font/arbutus_slab"
                             android:textAllCaps="true"
                             android:textColor="#ffffff"
