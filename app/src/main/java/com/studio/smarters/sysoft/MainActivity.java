@@ -2,9 +2,12 @@ package com.studio.smarters.sysoft;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
@@ -140,5 +143,24 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+    public void fb(View view) {
+        Intent i;
+        i= new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/Sysoft-Technology-517843175087542/?ref=br_rs"));
+        startActivity(i);
+    }
+    public void map(View v){
+        Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
+                Uri.parse("http://maps.google.com/maps?daddr=20.284285,85.809221"));
+        startActivity(intent);
+    }
+    public void call(View v){
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.CALL_PHONE}, 1);
+            return;
+        }
+        Intent i = new Intent(Intent.ACTION_CALL);
+        i.setData(Uri.parse("tel:+918763422256"));
+        startActivity(i);
     }
 }
