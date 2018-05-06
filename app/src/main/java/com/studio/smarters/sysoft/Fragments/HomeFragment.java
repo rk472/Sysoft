@@ -141,8 +141,19 @@ public class HomeFragment extends Fragment {
         void setDesc(String desc){
             newsDesc.setText(desc);
         }
-        void setPic(Context ctx,String url){
-            Picasso.with(ctx).load(url).into(newsPic);
+        void setPic(final Context ctx, final String url){
+            Picasso.with(ctx).load(url).networkPolicy(NetworkPolicy.OFFLINE).placeholder(R.drawable.dp)
+                    .into(newsPic, new Callback() {
+                        @Override
+                        public void onSuccess() {
+
+                        }
+
+                        @Override
+                        public void onError() {
+                            Picasso.with(ctx).load(url).placeholder(R.drawable.dp).into(newsPic);
+                        }
+                    });
         }
     }
     public static class BatchViewHolder extends RecyclerView.ViewHolder{

@@ -24,6 +24,7 @@ public class SysoftOffline extends Application {
         Picasso built=builder.build();
         built.setIndicatorsEnabled(true);
         built.setLoggingEnabled(true);
+        built.setIndicatorsEnabled(false);
         Picasso.setSingletonInstance(built);
     }
 }
