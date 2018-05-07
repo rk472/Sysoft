@@ -64,7 +64,7 @@
                     android:textSize="15dp"/>
 
                 <TextView
-                    android:id="@+id/news_row_knowmore"
+                    android:id="@+id/news_row_know_more"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/arbutus_slab"

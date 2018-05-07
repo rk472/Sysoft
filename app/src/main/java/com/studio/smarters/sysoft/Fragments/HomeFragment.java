@@ -1,6 +1,7 @@
 package com.studio.smarters.sysoft.Fragments;
 
 
+import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -91,11 +92,37 @@ public class HomeFragment extends Fragment {
                 newsRef.child("other_news")
         ) {
             @Override
-            protected void populateViewHolder(NewsViewHolder viewHolder, News model, int position) {
+            protected void populateViewHolder(NewsViewHolder viewHolder, final News model, int position) {
                 viewHolder.setDesc(model.getNews_desc());
                 viewHolder.setTitle(model.getNews_title());
                 viewHolder.setPic(getActivity(),model.getNews_pic());
                 progress.setVisibility(View.GONE);
+                viewHolder.knowMore.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        final Dialog fullscreenDialog = new Dialog(getContext(), R.style.DialogFullscreen);
+                        fullscreenDialog.setContentView(R.layout.news_dialog);
+                        final ImageView logo = fullscreenDialog.findViewById(R.id.news_dialog_pic);
+                        TextView title = fullscreenDialog.findViewById(R.id.news_dialog_title);
+                        TextView desc = fullscreenDialog.findViewById(R.id.news_dialog_desc);
+                        title.setText(model.getNews_title());
+                        desc.setText(model.getNews_desc());
+                        Picasso.with(main).load(model.getNews_pic()).networkPolicy(NetworkPolicy.OFFLINE).placeholder(R.drawable.dp)
+                                .into(logo, new Callback() {
+                                    @Override
+                                    public void onSuccess() {
+                                    }
+                                    @Override
+                                    public void onError() {
+                                        Picasso.with(main).load(model.getNews_pic()).placeholder(R.drawable.dp).into(logo);
+                                    }
+                                });
+
+                        fullscreenDialog.show();
+
+
+                    }
+                });
             }
         };
         newsRef.child("upcoming_batches").keepSynced(true);
@@ -110,6 +137,7 @@ public class HomeFragment extends Fragment {
                 viewHolder.setAllData(model.getBatch_name(),model.getBatch_start(),model.getBatch_timing());
                 viewHolder.setNew(model.isN());
                 viewHolder.setPic(getActivity(),model.getImage());
+
             }
         };
 
@@ -127,13 +155,14 @@ public class HomeFragment extends Fragment {
     }
 
     public static class NewsViewHolder extends RecyclerView.ViewHolder{
-        TextView newsTitle,newsDesc;
+        TextView newsTitle,newsDesc,knowMore;
         ImageView newsPic;
         public NewsViewHolder(View itemView) {
             super(itemView);
             newsTitle=itemView.findViewById(R.id.news_row_title);
             newsDesc=itemView.findViewById(R.id.news_row_desc);
             newsPic=itemView.findViewById(R.id.news_row_pic);
+            knowMore=itemView.findViewById(R.id.news_row_know_more);
         }
         void setTitle(String title){
             newsTitle.setText(title);
