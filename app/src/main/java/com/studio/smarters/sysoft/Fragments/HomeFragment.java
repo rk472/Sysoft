@@ -107,17 +107,23 @@ public class HomeFragment extends Fragment {
                         TextView desc = fullscreenDialog.findViewById(R.id.news_dialog_desc);
                         title.setText(model.getNews_title());
                         desc.setText(model.getNews_desc());
-                        Picasso.with(main).load(model.getNews_pic()).networkPolicy(NetworkPolicy.OFFLINE).placeholder(R.drawable.dp)
+                        Picasso.with(main).load(model.getNews_pic()).networkPolicy(NetworkPolicy.OFFLINE).placeholder(R.drawable.back35)
                                 .into(logo, new Callback() {
                                     @Override
                                     public void onSuccess() {
                                     }
                                     @Override
                                     public void onError() {
-                                        Picasso.with(main).load(model.getNews_pic()).placeholder(R.drawable.dp).into(logo);
+                                        Picasso.with(main).load(model.getNews_pic()).placeholder(R.drawable.back35).into(logo);
                                     }
                                 });
-
+                        ImageView imageView=fullscreenDialog.findViewById(R.id.img_dialog_fullscreen_close);
+                        imageView.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                fullscreenDialog.dismiss();
+                            }
+                        });
                         fullscreenDialog.show();
 
 
@@ -171,7 +177,7 @@ public class HomeFragment extends Fragment {
             newsDesc.setText(desc);
         }
         void setPic(final Context ctx, final String url){
-            Picasso.with(ctx).load(url).networkPolicy(NetworkPolicy.OFFLINE).placeholder(R.drawable.dp)
+            Picasso.with(ctx).load(url).networkPolicy(NetworkPolicy.OFFLINE).placeholder(R.drawable.back35)
                     .into(newsPic, new Callback() {
                         @Override
                         public void onSuccess() {
@@ -180,7 +186,7 @@ public class HomeFragment extends Fragment {
 
                         @Override
                         public void onError() {
-                            Picasso.with(ctx).load(url).placeholder(R.drawable.dp).into(newsPic);
+                            Picasso.with(ctx).load(url).placeholder(R.drawable.back35).into(newsPic);
                         }
                     });
         }
