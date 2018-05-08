@@ -16,6 +16,7 @@
         <ImageView
             android:id="@+id/gallery_row_pic"
             android:layout_width="match_parent"
+            android:scaleType="centerCrop"
             android:layout_height="match_parent" />
 
     </LinearLayout>

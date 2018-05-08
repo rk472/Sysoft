@@ -214,7 +214,7 @@ public class HomeFragment extends Fragment {
                 newText.setVisibility(View.INVISIBLE);
         }
         void setPic(final Context ctx, final String url){
-            Picasso.with(ctx).load(url).networkPolicy(NetworkPolicy.OFFLINE).placeholder(R.drawable.dp)
+            Picasso.with(ctx).load(url).networkPolicy(NetworkPolicy.OFFLINE).placeholder(R.drawable.back35)
                     .into(img, new Callback() {
                         @Override
                         public void onSuccess() {
@@ -223,7 +223,7 @@ public class HomeFragment extends Fragment {
 
                         @Override
                         public void onError() {
-                            Picasso.with(ctx).load(url).placeholder(R.drawable.dp).into(img);
+                            Picasso.with(ctx).load(url).placeholder(R.drawable.back35).into(img);
                         }
                     });
         }

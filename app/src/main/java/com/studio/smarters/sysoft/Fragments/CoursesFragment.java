@@ -106,7 +106,7 @@ public class CoursesFragment extends Fragment {
             fee.setText(s);
         }
         void setDp(final Context ctx, final String s){
-            Picasso.with(ctx).load(s).networkPolicy(NetworkPolicy.OFFLINE).placeholder(R.drawable.dp)
+            Picasso.with(ctx).load(s).networkPolicy(NetworkPolicy.OFFLINE).placeholder(R.drawable.back35)
                     .into(dp, new Callback() {
                         @Override
                         public void onSuccess() {
@@ -115,7 +115,7 @@ public class CoursesFragment extends Fragment {
 
                         @Override
                         public void onError() {
-                            Picasso.with(ctx).load(s).placeholder(R.drawable.dp).into(dp);
+                            Picasso.with(ctx).load(s).placeholder(R.drawable.back35).into(dp);
                         }
                     });
         }

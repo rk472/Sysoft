@@ -160,7 +160,7 @@ public class MainActivity extends AppCompatActivity
             return;
         }
         Intent i = new Intent(Intent.ACTION_CALL);
-        i.setData(Uri.parse("tel:+918763422256"));
+        i.setData(Uri.parse("tel:+918114979688"));
         startActivity(i);
     }
 }
