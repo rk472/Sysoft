@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
@@ -20,6 +21,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.studio.smarters.sysoft.Fragments.AboutFragment;
 import com.studio.smarters.sysoft.Fragments.ContactFragment;
@@ -34,6 +36,7 @@ import com.studio.smarters.sysoft.Fragments.SuccessFragment;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private FragmentTransaction fragmentTransaction;
+    private Boolean exit = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,18 +64,21 @@ public class MainActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            if(getSupportFragmentManager().findFragmentById(R.id.main_container).getTag().equals("home"))
-                new AlertDialog.Builder(this)
-                        .setTitle("Exit")
-                        .setMessage("Do You really want to Exit ?")
-                        .setPositiveButton("Yes, Sure", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                MainActivity.super.onBackPressed();
-                            }
-                        }).setNegativeButton("No, Don't",null).show();
-
-            else{
+            if(getSupportFragmentManager().findFragmentById(R.id.main_container).getTag().equals("home")) {
+                if (exit) {
+                    finish(); // finish activity
+                } else {
+                    Toast.makeText(this, "Press Back again to Exit.",
+                            Toast.LENGTH_SHORT).show();
+                    exit = true;
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            exit = false;
+                        }
+                    }, 3 * 1000);
+                }
+            }else{
                 Fragment f=new HomeFragment();
                 fragmentTransaction = getSupportFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.main_container, f,"home");
