@@ -3,6 +3,7 @@ package com.studio.smarters.sysoft.Fragments;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -14,22 +15,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 import com.studio.smarters.sysoft.POJO.Course;
 import com.studio.smarters.sysoft.R;
-import com.studio.smarters.sysoft.SyllabusActivity;
-
-import de.hdodenhof.circleimageview.CircleImageView;
 
 public class CoursesFragment extends Fragment {
     private AppCompatActivity main;
@@ -69,9 +69,18 @@ public class CoursesFragment extends Fragment {
                         if(model.getDoc().equals("none")){
                             Toast.makeText(main, "Syllabus is being modified..try again later...", Toast.LENGTH_SHORT).show();
                         }else {
-                            Intent i = new Intent(getActivity(), SyllabusActivity.class);
-                            i.putExtra("url", model.getDoc());
-                            startActivity(i);
+                            progress.setVisibility(View.VISIBLE);
+                            StorageReference s= FirebaseStorage.getInstance().getReferenceFromUrl(model.getDoc());
+                            s.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                                    intent.setDataAndType(uri, "application/pdf");
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    getActivity().startActivity(intent);
+                                    progress.setVisibility(View.GONE);
+                                }
+                            });
                         }
                     }
                 });
