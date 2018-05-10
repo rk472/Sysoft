@@ -141,7 +141,7 @@ public class HomeFragment extends Fragment {
             @Override
             protected void populateViewHolder(BatchViewHolder viewHolder, Batch model, int position) {
                 viewHolder.setAllData(model.getBatch_name(),model.getBatch_start(),model.getBatch_timing());
-                viewHolder.setNew(model.isN());
+                viewHolder.setNew(model.isTrending());
                 viewHolder.setPic(getActivity(),model.getImage());
 
             }

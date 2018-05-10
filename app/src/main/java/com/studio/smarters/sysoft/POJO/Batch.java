@@ -4,8 +4,7 @@ import com.google.firebase.database.PropertyName;
 
 public class Batch {
     String batch_name,batch_start,batch_timing,image;
-    @PropertyName("new")
-    boolean n;
+    boolean trending;
 
     public String getImage() {
         return image;
@@ -15,21 +14,20 @@ public class Batch {
         this.image = image;
     }
 
-    public boolean isN() {
-        return n;
+    public boolean isTrending() {
+        return trending;
     }
 
-    public void setN(boolean n) {
-        this.n = n;
+    public void setTrending(boolean trending) {
+        this.trending = trending;
     }
 
-    public Batch(String batch_name, String batch_start, String batch_timing, String image, boolean n) {
-
+    public Batch(String batch_name, String batch_start, String batch_timing, String image, boolean trending) {
         this.batch_name = batch_name;
         this.batch_start = batch_start;
         this.batch_timing = batch_timing;
         this.image = image;
-        this.n = n;
+        this.trending = trending;
     }
 
     public String getBatch_name() {
